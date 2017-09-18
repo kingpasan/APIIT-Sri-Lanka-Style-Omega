@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pasansemage.pasanmadurangasemagecb006067.mDatabase.DatabaseHelper;
 import com.pasansemage.pasanmadurangasemagecb006067.mDatabase.Table;
@@ -75,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    //login logic
     private void Login() {
 
         String Username = txtUsername.getText().toString().trim();
@@ -84,25 +86,28 @@ public class LoginActivity extends AppCompatActivity {
             ErrorAlert("Login", "Please fill Username");
         } else if ("".equals(txtPassword.getText().toString())) {
             ErrorAlert("Login", "Please fill Password");
-        }else{
-            Cursor cursor = db.rawQuery("SELECT * FROM " + Table.TABLE_USER + " WHERE " + Table.USER_NAME + "=? AND " + Table.USER_PASSWORD + "=?",new  String[]{Username,Password});
+        } else {
+            Cursor cursor = db.rawQuery("SELECT * FROM " + Table.TABLE_USER + " WHERE " + Table.USER_NAME + "=? AND " + Table.USER_PASSWORD + "=?", new String[]{Username, Password});
 
-            if (cursor != null){
-                if(cursor.getCount()>0){
+            if (cursor != null) {
+                if (cursor.getCount() > 0) {
+                    cursor.moveToNext();
                     String UI = cursor.getString(cursor.getColumnIndex(Table.USER_ID));
                     String UN = cursor.getString(cursor.getColumnIndex(Table.USER_NAME));
-                    String UT =cursor.getString(cursor.getColumnIndex(Table.USER_TYPE));
+                    String UT = cursor.getString(cursor.getColumnIndex(Table.USER_TYPE));
 
                     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("USERID",UI);
-                    editor.putString("USERNAME",UN);
-                    editor.putString("USERTYPE",UT);
+                    editor.putString("USERID", UI);
+                    editor.putString("USERNAME", UN);
+                    editor.putString("USERTYPE", UT);
                     editor.apply();
 
-                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
+                }else{
+                    ErrorAlert("Login"," Username or password incorrect! Please try again! ");
                 }
             }
         }

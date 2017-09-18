@@ -30,6 +30,7 @@ public class Table {
     public static final String USER_PASSWORD = "PASSWORD";
     public static final String USER_EMAIL = "EMAIL";
     public static final String USER_FULL_NAME = "FULL_NAME";
+    public static final String USER_GENDER = "GENDER";
     public static final String USER_BILLING_ADDRESS = "ADDRESS";
     public static final String USER_MOBILE_NUMBER = "MOBILE_NUMBER";
 
@@ -99,7 +100,8 @@ public class Table {
             USER_NAME + " TEXT, " +
             USER_PASSWORD + " TEXT, " +
             USER_EMAIL + " TEXT, " +
-            USER_FULL_NAME + " TEXT" +
+            USER_FULL_NAME + " TEXT, " +
+            USER_GENDER + " TEXT, " +
             USER_BILLING_ADDRESS + " TEXT, " +
             USER_MOBILE_NUMBER + " TEXT" +
             ")";

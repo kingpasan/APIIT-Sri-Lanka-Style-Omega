@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.pasansemage.pasanmadurangasemagecb006067.LoginActivity"
     android:background="@color/colorPrimary"
-    tools:layout_editor_absoluteY="81dp"
-    tools:layout_editor_absoluteX="0dp">
+    tools:context="com.pasansemage.pasanmadurangasemagecb006067.LoginActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp">
 
     <ImageView
         android:id="@+id/ivLoginLogo"
