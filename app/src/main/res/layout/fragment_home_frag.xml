@@ -6,7 +6,6 @@
     android:background="@color/colorPrimary"
     tools:context="com.pasansemage.pasanmadurangasemagecb006067.mFragment.home_frag">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <ScrollView
         android:layout_width="match_parent"
