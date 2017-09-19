@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#cf6c19</color>
     <color name="colorAccent">#f4801e</color>
     <color name="colorText">#ffffff</color>
+    <color name="colotTextBack">#bcbec0</color>
 </resources>

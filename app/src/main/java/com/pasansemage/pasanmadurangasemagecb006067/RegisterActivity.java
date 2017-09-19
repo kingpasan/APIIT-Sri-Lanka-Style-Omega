@@ -139,9 +139,10 @@ public class RegisterActivity extends AppCompatActivity {
                         Toast.makeText(RegisterActivity.this, "Account is not Created! Please try again!", Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(RegisterActivity.this, "Account is Successfully Created", Toast.LENGTH_LONG).show();
+                        finish();
                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                         startActivity(intent);
-                        finish();
+
                     }
 
                 }

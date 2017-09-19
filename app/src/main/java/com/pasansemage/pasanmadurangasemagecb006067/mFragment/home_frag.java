@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
@@ -14,25 +15,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pasansemage.pasanmadurangasemagecb006067.R;
 import com.pasansemage.pasanmadurangasemagecb006067.mAdapter.ProductListAdapter;
 import com.pasansemage.pasanmadurangasemagecb006067.mDatabase.DatabaseHelper;
 import com.pasansemage.pasanmadurangasemagecb006067.mDatabase.Table;
+import com.pasansemage.pasanmadurangasemagecb006067.mFragment.mSubFragments.addProduct_frag;
 import com.pasansemage.pasanmadurangasemagecb006067.mHelper.Product;
+import com.pasansemage.pasanmadurangasemagecb006067.mWidgets.ExpandableHeightGridView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class home_frag extends Fragment {
 
-    GridView gridView;
+    ExpandableHeightGridView gridView;
     ArrayList<Product> list;
     ProductListAdapter adapter = null;
 
     DatabaseHelper databaseHelper;
     SQLiteDatabase db;
 
+    TextView adminPanel;
     Button btnAddProduct, btnInquiries, btnOrderComplete, btnMen, btnWomen, btnKids, btnJewlery, btnFasion;
     CardView cardView;
 
@@ -57,8 +64,14 @@ public class home_frag extends Fragment {
         btnJewlery = (Button)view.findViewById(R.id.btnJewelry);
         btnFasion = (Button)view.findViewById(R.id.btnFashion);
         cardView = (CardView)view.findViewById(R.id.crdView);
+        adminPanel = (TextView)view.findViewById(R.id.txtAdminPanel);
 
-        gridView = (GridView) view.findViewById(R.id.gridViewAll);
+
+        gridView = (ExpandableHeightGridView) view.findViewById(R.id.gridViewAll);
+        gridView.setExpanded(true);
+        gridView.setFocusable(false);
+
+
         list = new ArrayList<>();
         adapter = new ProductListAdapter(view.getContext(), R.layout.product_list, list);
         gridView.setAdapter(adapter);
@@ -74,7 +87,19 @@ public class home_frag extends Fragment {
             btnInquiries.setVisibility(view.GONE);
             btnOrderComplete.setVisibility(view.GONE);
             cardView.setVisibility(view.GONE);
+            adminPanel.setVisibility(view.GONE);
         }
+
+        btnAddProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addProduct_frag addProduct_frag = new addProduct_frag();
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.frame,addProduct_frag,null);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
 
 
 
@@ -86,7 +111,7 @@ public class home_frag extends Fragment {
             String title = cursor.getString(cursor.getColumnIndex(Table.PRODUCT_TITLE));
             String category = cursor.getString(cursor.getColumnIndex(Table.PRODUCT_CATEGORY));
             String description = cursor.getString(cursor.getColumnIndex(Table.PRODUCT_DESCRIPTION));
-            String price = cursor.getString(cursor.getColumnIndex(Table.PRODUCT_PRICE));
+            String price = "Rs."+cursor.getString(cursor.getColumnIndex(Table.PRODUCT_PRICE));
             byte[] image = cursor.getBlob(cursor.getColumnIndex(Table.PRODUCT_IMAGE));
 
             list.add(new Product(id, title, category, description, price, image));
