@@ -44,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
     //variables
     String[] GenderArray;
     final int REQUEST_CODE_GALLERY = 999;
-    final int CROP_CODE = 2;
+    //final int CROP_CODE = 2;
 
 
     @Override
