@@ -1,0 +1,151 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="com.pasansemage.pasanmadurangasemagecb006067.mFragment.home_frag">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ivLogo"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/styleomega_login_logo" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/crdView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="@color/cardview_dark_background"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btnAddProduct"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/round_button"
+                        android:text="Add Product"
+                        android:textColor="@color/colorText" />
+
+                    <Button
+                        android:id="@+id/btnOrderComplete"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/round_button"
+                        android:text="Order Complete"
+                        android:textColor="@color/colorText" />
+
+                    <Button
+                        android:id="@+id/btnInquiries"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/round_button"
+                        android:text="Inquiries"
+                        android:textColor="@color/colorText" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnMen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/round_button"
+                        android:text="Men"
+                        android:textColor="@color/colorText" />
+
+                    <Button
+                        android:id="@+id/btnWomen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/round_button"
+                        android:text="Women"
+                        android:textColor="@color/colorText" />
+
+                    <Button
+                        android:id="@+id/btnKids"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/round_button"
+                        android:text="Kids"
+                        android:textColor="@color/colorText" />
+
+                    <Button
+                        android:id="@+id/btnJewelry"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/round_button"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="Jewelry and Watches"
+                        android:textColor="@color/colorText" />
+
+                    <Button
+                        android:id="@+id/btnFashion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/round_button"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="Fashion Accessories"
+                        android:textColor="@color/colorText" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <GridView
+                android:id="@+id/gridViewAll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:numColumns="1"
+                android:stretchMode="columnWidth" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

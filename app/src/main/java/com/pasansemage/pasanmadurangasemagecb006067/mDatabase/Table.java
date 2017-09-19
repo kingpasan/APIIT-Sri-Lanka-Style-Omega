@@ -41,6 +41,7 @@ public class Table {
     public static final String PRODUCT_CATEGORY = "CATEGORY";
     public static final String PRODUCT_DESCRIPTION = "DESCRIPTION";
     public static final String PRODUCT_PRICE = "PRICE";
+    public static final String PRODUCT_IMAGE = "IMAGE";
 
     //Table Product Image
     public static final String IMAGE_ID = "IMAGE_ID";
@@ -112,7 +113,8 @@ public class Table {
             PRODUCT_TITLE + " TEXT, " +
             PRODUCT_CATEGORY + " TEXT, " +
             PRODUCT_DESCRIPTION + " TEXT, " +
-            PRODUCT_PRICE + " TEXT" +
+            PRODUCT_PRICE + " TEXT, " +
+            PRODUCT_IMAGE + " BLOB" +
             ")";
 
     public static final String CREATE_IMAGE_TABLE = "CREATE TABLE " + TABLE_IMAGE +

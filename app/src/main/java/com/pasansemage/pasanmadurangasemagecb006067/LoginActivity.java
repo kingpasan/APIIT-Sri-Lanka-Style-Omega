@@ -103,9 +103,10 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString("USERTYPE", UT);
                     editor.apply();
 
+                    finish();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
-                    finish();
+
                 }else{
                     ErrorAlert("Login"," Username or password incorrect! Please try again! ");
                 }
