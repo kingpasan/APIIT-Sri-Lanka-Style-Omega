@@ -34,6 +34,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(Table.CREATE_SIZE_TABLE);
         db.execSQL(Table.CREATE_CART_TABLE);
         db.execSQL(Table.CREATE_PURCHASE_TABLE);
+        db.execSQL(Table.CREATE_TRANSACTION_TABLE);
+        db.execSQL(Table.CREATE_P_T_TABLE);
         db.execSQL(Table.CREATE_REVIEW_TABLE);
         db.execSQL(Table.CREATE_CC_TABLE);
 
@@ -58,6 +60,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(Table.DROP_SIZE_TABLE);
         db.execSQL(Table.DROP_CART_TABLE);
         db.execSQL(Table.DROP_PURCHASE_TABLE);
+        db.execSQL(Table.DROP_TRANSACTION_TABLE);
+        db.execSQL(Table.DROP_P_T_TABLE);
         db.execSQL(Table.DROP_REVIEW_TABLE);
         db.execSQL(Table.DROP_CC_TABLE);
         onCreate(db);
