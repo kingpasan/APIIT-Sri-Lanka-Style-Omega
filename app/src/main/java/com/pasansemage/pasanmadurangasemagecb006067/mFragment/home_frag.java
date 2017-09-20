@@ -191,7 +191,7 @@ public class home_frag extends Fragment {
         category_frag.setArguments(bundle);
 
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.frame,category_frag,null);
+        fragmentTransaction.replace(R.id.frame, category_frag, null);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 

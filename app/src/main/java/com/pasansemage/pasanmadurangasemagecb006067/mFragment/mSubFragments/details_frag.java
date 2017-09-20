@@ -480,11 +480,11 @@ public class details_frag extends Fragment {
                             ptrans.put(Table.P_T_QTY, TRANS_ID);
                             ptrans.put(Table.P_T_SIZE, TRANS_ID);
 
-                            long result3 = dbWrite.insert(Table.TABLE_PRODUCT_TRANSACTION,null,ptrans);
+                            long result3 = dbWrite.insert(Table.TABLE_PRODUCT_TRANSACTION, null, ptrans);
 
-                            if (result1 == -1 || result2 == -1 || result3 == -1){
-                                Toast.makeText(getContext(),"Product transaction is not complete",Toast.LENGTH_LONG).show();
-                            }else {
+                            if (result1 == -1 || result2 == -1 || result3 == -1) {
+                                Toast.makeText(getContext(), "Product transaction is not complete", Toast.LENGTH_LONG).show();
+                            } else {
                                 AlertDialog.Builder builder1 = new AlertDialog.Builder(getContext());
                                 builder1.setTitle("Style Omega");
                                 builder1.setMessage("Payment Received complete. Shipment will arrived in 2 week days! You can view shipment details on order history");
@@ -495,8 +495,6 @@ public class details_frag extends Fragment {
                                     }
                                 });
                             }
-
-
 
 
                         }
