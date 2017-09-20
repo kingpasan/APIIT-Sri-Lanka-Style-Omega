@@ -13,6 +13,7 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
@@ -24,6 +25,7 @@ import com.pasansemage.pasanmadurangasemagecb006067.mAdapter.ProductListAdapter;
 import com.pasansemage.pasanmadurangasemagecb006067.mDatabase.DatabaseHelper;
 import com.pasansemage.pasanmadurangasemagecb006067.mDatabase.Table;
 import com.pasansemage.pasanmadurangasemagecb006067.mFragment.mSubFragments.addProduct_frag;
+import com.pasansemage.pasanmadurangasemagecb006067.mFragment.mSubFragments.details_frag;
 import com.pasansemage.pasanmadurangasemagecb006067.mHelper.Product;
 import com.pasansemage.pasanmadurangasemagecb006067.mWidgets.ExpandableHeightGridView;
 
@@ -55,16 +57,16 @@ public class home_frag extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home_frag, container, false);
 
         //init
-        btnAddProduct = (Button)view.findViewById(R.id.btnAddProduct);
-        btnInquiries = (Button)view.findViewById(R.id.btnInquiries);
-        btnOrderComplete = (Button)view.findViewById(R.id.btnOrderComplete);
-        btnMen = (Button)view.findViewById(R.id.btnMen);
-        btnWomen = (Button)view.findViewById(R.id.btnWomen);
-        btnKids = (Button)view.findViewById(R.id.btnKids);
-        btnJewlery = (Button)view.findViewById(R.id.btnJewelry);
-        btnFasion = (Button)view.findViewById(R.id.btnFashion);
-        cardView = (CardView)view.findViewById(R.id.crdView);
-        adminPanel = (TextView)view.findViewById(R.id.txtAdminPanel);
+        btnAddProduct = (Button) view.findViewById(R.id.btnAddProduct);
+        btnInquiries = (Button) view.findViewById(R.id.btnInquiries);
+        btnOrderComplete = (Button) view.findViewById(R.id.btnOrderComplete);
+        btnMen = (Button) view.findViewById(R.id.btnMen);
+        btnWomen = (Button) view.findViewById(R.id.btnWomen);
+        btnKids = (Button) view.findViewById(R.id.btnKids);
+        btnJewlery = (Button) view.findViewById(R.id.btnJewelry);
+        btnFasion = (Button) view.findViewById(R.id.btnFashion);
+        cardView = (CardView) view.findViewById(R.id.crdView);
+        adminPanel = (TextView) view.findViewById(R.id.txtAdminPanel);
 
 
         gridView = (ExpandableHeightGridView) view.findViewById(R.id.gridViewAll);
@@ -79,10 +81,10 @@ public class home_frag extends Fragment {
         db = databaseHelper.getReadableDatabase();
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        String usertype = sharedPreferences.getString("USERTYPE","");
+        String usertype = sharedPreferences.getString("USERTYPE", "");
 
 
-        if ("Customer".equals(usertype)){
+        if ("Customer".equals(usertype)) {
             btnAddProduct.setVisibility(view.GONE);
             btnInquiries.setVisibility(view.GONE);
             btnOrderComplete.setVisibility(view.GONE);
@@ -95,12 +97,28 @@ public class home_frag extends Fragment {
             public void onClick(View v) {
                 addProduct_frag addProduct_frag = new addProduct_frag();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.frame,addProduct_frag,null);
+                fragmentTransaction.replace(R.id.frame, addProduct_frag, null);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });
 
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("PRODUCT_ID", list.get(position).getPRODUCT_ID());
+
+                details_frag details_frag = new details_frag();
+                details_frag.setArguments(bundle);
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.replace(R.id.frame,details_frag,null);
+                fragmentTransaction.commit();
+
+            }
+        });
 
 
         Cursor cursor = fetchData();
@@ -111,7 +129,7 @@ public class home_frag extends Fragment {
             String title = cursor.getString(cursor.getColumnIndex(Table.PRODUCT_TITLE));
             String category = cursor.getString(cursor.getColumnIndex(Table.PRODUCT_CATEGORY));
             String description = cursor.getString(cursor.getColumnIndex(Table.PRODUCT_DESCRIPTION));
-            String price = "Rs."+cursor.getString(cursor.getColumnIndex(Table.PRODUCT_PRICE));
+            String price = "Rs." + cursor.getString(cursor.getColumnIndex(Table.PRODUCT_PRICE))+".00";
             byte[] image = cursor.getBlob(cursor.getColumnIndex(Table.PRODUCT_IMAGE));
 
             list.add(new Product(id, title, category, description, price, image));

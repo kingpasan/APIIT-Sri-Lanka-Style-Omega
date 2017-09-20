@@ -104,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (validation()) {
 
                     //convert image to byte array
-                    Bitmap bitmap = Bitmap.createScaledBitmap(((BitmapDrawable) ivProfilePic.getDrawable()).getBitmap(), 128, 128, true);
+                    Bitmap bitmap = Bitmap.createScaledBitmap(((BitmapDrawable) ivProfilePic.getDrawable()).getBitmap(), 512, 512, true);
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
                     byte[] byteArray = stream.toByteArray();
