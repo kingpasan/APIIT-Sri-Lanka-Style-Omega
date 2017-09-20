@@ -25,6 +25,7 @@ import com.pasansemage.pasanmadurangasemagecb006067.mAdapter.ProductListAdapter;
 import com.pasansemage.pasanmadurangasemagecb006067.mDatabase.DatabaseHelper;
 import com.pasansemage.pasanmadurangasemagecb006067.mDatabase.Table;
 import com.pasansemage.pasanmadurangasemagecb006067.mFragment.mSubFragments.addProduct_frag;
+import com.pasansemage.pasanmadurangasemagecb006067.mFragment.mSubFragments.category_frag;
 import com.pasansemage.pasanmadurangasemagecb006067.mFragment.mSubFragments.details_frag;
 import com.pasansemage.pasanmadurangasemagecb006067.mHelper.Product;
 import com.pasansemage.pasanmadurangasemagecb006067.mWidgets.ExpandableHeightGridView;
@@ -114,7 +115,7 @@ public class home_frag extends Fragment {
                 details_frag.setArguments(bundle);
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.replace(R.id.frame,details_frag,null);
+                fragmentTransaction.replace(R.id.frame, details_frag, null);
                 fragmentTransaction.commit();
 
             }
@@ -129,13 +130,48 @@ public class home_frag extends Fragment {
             String title = cursor.getString(cursor.getColumnIndex(Table.PRODUCT_TITLE));
             String category = cursor.getString(cursor.getColumnIndex(Table.PRODUCT_CATEGORY));
             String description = cursor.getString(cursor.getColumnIndex(Table.PRODUCT_DESCRIPTION));
-            String price = "Rs." + cursor.getString(cursor.getColumnIndex(Table.PRODUCT_PRICE))+".00";
+            String price = "Rs." + cursor.getString(cursor.getColumnIndex(Table.PRODUCT_PRICE)) + ".00";
             byte[] image = cursor.getBlob(cursor.getColumnIndex(Table.PRODUCT_IMAGE));
 
             list.add(new Product(id, title, category, description, price, image));
         }
 
         adapter.notifyDataSetChanged();
+
+        btnMen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCategory("Men");
+            }
+        });
+
+        btnWomen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCategory("Women");
+            }
+        });
+
+        btnKids.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCategory("Kids");
+            }
+        });
+
+        btnFasion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCategory("Fashion Accessories");
+            }
+        });
+
+        btnJewlery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCategory("Jewelry and Watches");
+            }
+        });
 
 
         return view;
@@ -144,6 +180,22 @@ public class home_frag extends Fragment {
     private Cursor fetchData() {
         Cursor cursor = db.rawQuery("SELECT * FROM " + Table.TABLE_PRODUCT, null);
         return cursor;
+    }
+
+    private void openCategory(String CATEGORY) {
+
+        Bundle bundle = new Bundle();
+        bundle.putString("CATEGORY", CATEGORY);
+
+        category_frag category_frag = new category_frag();
+        category_frag.setArguments(bundle);
+
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frame,category_frag,null);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
+
     }
 
 }
